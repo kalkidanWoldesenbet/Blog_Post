@@ -1,0 +1,26 @@
+<%- include("partials/header", { title: "Edit: " + post.title }) %>
+
+<div class="page-head">
+  <h1>Edit Post</h1>
+  <a class="button ghost" href="/posts/<%= post.id %>">Back</a>
+</div>
+
+<form class="card form" action="/posts/<%= post.id %>" method="post">
+  <label>
+    Title
+    <input name="title" type="text" maxlength="120" value="<%= post.title %>" required />
+  </label>
+
+  <label>
+    Content
+    <textarea name="content" rows="10" required><%= post.content %></textarea>
+  </label>
+
+  <div class="actions">
+    <button class="button" type="submit">Save</button>
+    <a class="button secondary" href="/posts/<%= post.id %>">Cancel</a>
+  </div>
+</form>
+
+<%- include("partials/footer") %>
+

@@ -1,0 +1,40 @@
+<%- include("partials/header", { title: "Home" }) %>
+
+<section class="hero">
+  <h1>All Posts</h1>
+  <p class="muted">Create, edit, and delete posts. No database in this version.</p>
+</section>
+
+<% if (!posts.length) { %>
+  <div class="card">
+    <p>No posts yet.</p>
+    <a class="button" href="/posts/new">Write your first post</a>
+  </div>
+<% } else { %>
+  <div class="grid">
+    <% posts.forEach(post => { %>
+      <article class="card">
+        <h2 class="card-title">
+          <a href="/posts/<%= post.id %>"><%= post.title %></a>
+        </h2>
+        <p class="muted">
+          <%= post.createdAt.toLocaleString() %>
+        </p>
+        <p class="excerpt">
+          <%= post.content.length > 180 ? post.content.slice(0, 180) + "…" : post.content %>
+        </p>
+
+        <div class="actions">
+          <a class="button secondary" href="/posts/<%= post.id %>">Read</a>
+          <a class="button ghost" href="/posts/<%= post.id %>/edit">Edit</a>
+          <form action="/posts/<%= post.id %>/delete" method="post" class="inline">
+            <button class="button danger" type="submit">Delete</button>
+          </form>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+<% } %>
+
+<%- include("partials/footer") %>
+

@@ -1,0 +1,23 @@
+<%- include("partials/header", { title: post.title }) %>
+
+<div class="page-head">
+  <div>
+    <h1><%= post.title %></h1>
+    <p class="muted"><%= post.createdAt.toLocaleString() %></p>
+  </div>
+
+  <div class="actions">
+    <a class="button ghost" href="/">Home</a>
+    <a class="button secondary" href="/posts/<%= post.id %>/edit">Edit</a>
+    <form action="/posts/<%= post.id %>/delete" method="post" class="inline">
+      <button class="button danger" type="submit">Delete</button>
+    </form>
+  </div>
+</div>
+
+<article class="card prose">
+  <p><%= post.content %></p>
+</article>
+
+<%- include("partials/footer") %>
+
